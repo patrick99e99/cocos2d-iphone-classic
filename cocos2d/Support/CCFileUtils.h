@@ -36,6 +36,7 @@ extern NSString const *kCCFileUtilsiPhone;
 extern NSString const *kCCFileUtilsiPhoneHD;
 extern NSString const *kCCFileUtilsiPhone5;
 extern NSString const *kCCFileUtilsiPhone5HD;
+extern NSString const *kCCFileUtilsiPhoneRetinaHD;
 extern NSString const *kCCFileUtilsMac;
 extern NSString const *kCCFileUtilsMacHD;
 
@@ -196,6 +197,8 @@ enum {
  @since v2.0
  */
 -(void)setiPadRetinaDisplaySuffix:(NSString*)iPadRetinaDisplaySuffix;
+
+-(void)setiPhoneRetinaHDDisplaySuffix:(NSString *)suffix;
 
 #endif // __CC_PLATFORM_IOS
 
