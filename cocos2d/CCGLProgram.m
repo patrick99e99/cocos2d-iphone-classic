@@ -158,7 +158,7 @@ static NSString * g_extensionStr = @EXTENSION_STRING;
     //NSLog(@"USING IOS9 shaders");
     // BEGIN workaround for Xcode 7 ios9----
     NSString *sourceStr = [NSString stringWithUTF8String:source];
-    BOOL hasExtension = [sourceStr containsString:g_extensionStr];
+    BOOL hasExtension = !!([sourceStr rangeOfString:g_extensionStr].length);
     if(hasExtension) {
         NSArray *strs = [sourceStr componentsSeparatedByString:g_extensionStr];
         assert(strs.count == 2);
