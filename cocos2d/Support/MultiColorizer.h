@@ -2,10 +2,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreImage/CoreImage.h>
 
-@interface MultiColorizedResult : NSObject;
+@interface MultiColorizedResult : NSObject
 @property (nonatomic, copy) NSString *modifiedPath;
 @property (nonatomic) float hue;
 @property (nonatomic) float saturation;
+@property (nonatomic, copy) NSArray *matrix;
 @end
 
 @interface MultiColorizer : NSObject
