@@ -42,6 +42,8 @@
 #import "Platforms/Mac/CCDirectorMac.h"
 #endif
 
+#import "MultiColorizer.h"
+
 // needed for CCCallFuncO in Mac-display_link version
 //#import "CCActionManager.h"
 //#import "CCActionInstant.h"
@@ -282,9 +284,11 @@ static CCTextureCache *sharedTextureCache;
 	if( ! tex ) {
 
 		ccResolutionType resolution;
-		NSString *fullpath = [fileUtils fullPathForFilename:path resolutionType:&resolution];
+        MultiColorizedResult *result = [MultiColorizer multiColorizedResultFor:path];
+        NSString *modifiedPath = result ? result.modifiedPath : path;
+		NSString *fullpath = [fileUtils fullPathForFilename:modifiedPath resolutionType:&resolution];
 		if( ! fullpath ) {
-			CCLOG(@"cocos2d: Couldn't find file:%@", path);
+			CCLOG(@"cocos2d: Couldn't find file:%@", modifiedPath);
 			return nil;
 		}
 
@@ -298,9 +302,10 @@ static CCTextureCache *sharedTextureCache;
 #ifdef __CC_PLATFORM_IOS
 
 		else {
-
+            
 			UIImage *image = [[UIImage alloc] initWithContentsOfFile:fullpath];
-			tex = [[CCTexture2D alloc] initWithCGImage:image.CGImage resolutionType:resolution];
+            CGImageRef *cgImage = [MultiColorizer cgImageForImage:image result:result];
+			tex = [[CCTexture2D alloc] initWithCGImage:cgImage resolutionType:resolution];
 			[image release];
 
 			if( tex ){
@@ -343,7 +348,6 @@ static CCTextureCache *sharedTextureCache;
 
 	return tex;
 }
-
 
 -(CCTexture2D*) addCGImage: (CGImageRef) imageref forKey: (NSString *)key
 {
