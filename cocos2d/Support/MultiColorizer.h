@@ -3,15 +3,15 @@
 #import <CoreImage/CoreImage.h>
 
 @interface MultiColorizedResult : NSObject
-@property (nonatomic, copy) NSString *modifiedPath;
+@property (nonatomic, unsafe_unretained) NSString *modifiedPath;
 @property (nonatomic) float hue;
 @property (nonatomic) float saturation;
-@property (nonatomic, copy) NSArray *matrix;
+@property (nonatomic, unsafe_unretained) NSArray *matrix;
 @end
 
 @interface MultiColorizer : NSObject
 
 +(MultiColorizedResult *)multiColorizedResultFor:(NSString *)path;
-+(CGImageRef *)cgImageForImage:(UIImage *)image result:(MultiColorizedResult *)result;
++(CGImageRef *)cgImageForImage:(UIImage *)image result:(MultiColorizedResult *)result context:(CIContext *)context;
 
 @end

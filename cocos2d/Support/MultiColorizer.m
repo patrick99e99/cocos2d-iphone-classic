@@ -7,13 +7,18 @@
 
 +(MultiColorizedResult *)multiColorizedResultFor:(NSString *)path {
     NSArray *components = [[path lowercaseString] componentsSeparatedByString:@"."];
-    if (![[components lastObject] isEqualToString:@"png"]) return nil;
+    if (![[components lastObject] isEqualToString:@"png"]) {
+        return nil;
+    }
     
     NSArray *subComponents = [[components firstObject] componentsSeparatedByString:@"_"];
     NSString *modifiedPath = [self modifiedPathFor:subComponents];
-    if (!modifiedPath) return nil;
+    if (!modifiedPath) {
+        return nil;
+    }
 
     NSString *colorString = [subComponents lastObject];
+
     MultiColorizedResult *result = [[MultiColorizedResult alloc] init];
     result.modifiedPath = modifiedPath;
 
@@ -24,9 +29,9 @@
     return result;
 }
 
-+(CGImageRef *)cgImageForImage:(UIImage *)image result:(MultiColorizedResult *)result {
++(CGImageRef *)cgImageForImage:(UIImage *)image result:(MultiColorizedResult *)result context:(CIContext *)context {
     if (result) {
-        return [[self imageWithImage:image rotatedByHue:result.hue saturation:result.saturation matrix:result.matrix] CGImage];
+        return [[self imageWithImage:image rotatedByHue:result.hue saturation:result.saturation matrix:result.matrix context:context] CGImage];
     } else {
         return [image CGImage];
     }
@@ -61,10 +66,11 @@
     NSMutableArray *mutableComponents = [components mutableCopy];
     [mutableComponents removeLastObject];
     NSString *key = [mutableComponents componentsJoinedByString:@"_"];
+    [mutableComponents release];
     return [fileMappings objectForKey:key];
 }
 
-+(UIImage *)imageWithImage:(UIImage *)image rotatedByHue:(CGFloat)hue saturation:(CGFloat)saturation matrix:(NSArray *)matrix {
++(UIImage *)imageWithImage:(UIImage *)image rotatedByHue:(CGFloat)hue saturation:(CGFloat)saturation matrix:(NSArray *)matrix context:(CIContext *)context {
     CIImage *sourceCore = [CIImage imageWithCGImage:[image CGImage]];
     CIImage *resultCore = nil;
 
@@ -82,7 +88,7 @@
         [saturationAdjust setValue:[NSNumber numberWithFloat:saturation] forKey:kCIInputSaturationKey];
         resultCore = [saturationAdjust outputImage];
     }
-    
+
     if (matrix) {
         CIFilter *colorMatrixFilter = [CIFilter filterWithName:@"CIColorMatrix"];
         [colorMatrixFilter setDefaults];
@@ -95,11 +101,10 @@
         resultCore = [colorMatrixFilter outputImage];
     }
 
-    CIContext *context = [CIContext contextWithOptions:nil];
-    CGImageRef resultRef = [context createCGImage:resultCore fromRect:[resultCore extent]];
+    CGImageRef *resultRef = [context createCGImage:resultCore fromRect:[resultCore extent]];
     UIImage *result = [UIImage imageWithCGImage:resultRef];
     CGImageRelease(resultRef);
-    
+
     return result;
 }
 

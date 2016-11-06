@@ -54,7 +54,9 @@ static EAGLContext *_auxGLcontext = nil;
 static NSOpenGLContext *_auxGLcontext = nil;
 #endif
 
-@implementation CCTextureCache
+@implementation CCTextureCache {
+    CIContext *_cicontext;
+}
 
 #pragma mark TextureCache - Alloc, Init & Dealloc
 static CCTextureCache *sharedTextureCache;
@@ -95,6 +97,7 @@ static CCTextureCache *sharedTextureCache;
 		_auxGLcontext = [[EAGLContext alloc]
 						 initWithAPI:kEAGLRenderingAPIOpenGLES2
 						 sharegroup:[[view context] sharegroup]];
+        _cicontext = [[CIContext contextWithEAGLContext:_auxGLcontext] retain];
 
 #elif defined(__CC_PLATFORM_MAC)
 		NSOpenGLPixelFormat *pf = [view pixelFormat];
@@ -137,6 +140,8 @@ static CCTextureCache *sharedTextureCache;
 	sharedTextureCache = nil;
 	dispatch_release(_loadingQueue);
 	dispatch_release(_dictQueue);
+    [_cicontext release];
+    _cicontext = nil;
 
 	[super dealloc];
 }
@@ -287,6 +292,7 @@ static CCTextureCache *sharedTextureCache;
         MultiColorizedResult *result = [MultiColorizer multiColorizedResultFor:path];
         NSString *modifiedPath = result ? result.modifiedPath : path;
 		NSString *fullpath = [fileUtils fullPathForFilename:modifiedPath resolutionType:&resolution];
+
 		if( ! fullpath ) {
 			CCLOG(@"cocos2d: Couldn't find file:%@", modifiedPath);
 			return nil;
@@ -304,8 +310,9 @@ static CCTextureCache *sharedTextureCache;
 		else {
             
 			UIImage *image = [[UIImage alloc] initWithContentsOfFile:fullpath];
-            CGImageRef *cgImage = [MultiColorizer cgImageForImage:image result:result];
+            CGImageRef *cgImage = [MultiColorizer cgImageForImage:image result:result context:_cicontext];
 			tex = [[CCTexture2D alloc] initWithCGImage:cgImage resolutionType:resolution];
+            [result release];
 			[image release];
 
 			if( tex ){
