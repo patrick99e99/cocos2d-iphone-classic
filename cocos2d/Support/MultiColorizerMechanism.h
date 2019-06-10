@@ -9,7 +9,7 @@
 @property (nonatomic, unsafe_unretained) NSArray *matrix;
 @end
 
-@interface MultiColorizer : NSObject
+@interface MultiColorizerMechanism : NSObject
 
 +(MultiColorizedResult *)multiColorizedResultFor:(NSString *)path;
 +(CGImageRef *)cgImageForImage:(UIImage *)image result:(MultiColorizedResult *)result context:(CIContext *)context;

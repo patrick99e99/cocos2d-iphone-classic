@@ -1,9 +1,9 @@
-#import "MultiColorizer.h"
+#import "MultiColorizerMechanism.h"
 
 @implementation MultiColorizedResult
 @end
 
-@implementation MultiColorizer
+@implementation MultiColorizerMechanism
 
 +(MultiColorizedResult *)multiColorizedResultFor:(NSString *)path {
     NSArray *components = [[path lowercaseString] componentsSeparatedByString:@"."];

@@ -42,7 +42,7 @@
 #import "Platforms/Mac/CCDirectorMac.h"
 #endif
 
-#import "MultiColorizer.h"
+#import "MultiColorizerMechanism.h"
 
 // needed for CCCallFuncO in Mac-display_link version
 //#import "CCActionManager.h"
@@ -289,7 +289,7 @@ static CCTextureCache *sharedTextureCache;
 	if( ! tex ) {
 
 		ccResolutionType resolution;
-        MultiColorizedResult *result = [MultiColorizer multiColorizedResultFor:path];
+        MultiColorizedResult *result = [MultiColorizerMechanism multiColorizedResultFor:path];
         NSString *modifiedPath = result ? result.modifiedPath : path;
 		NSString *fullpath = [fileUtils fullPathForFilename:modifiedPath resolutionType:&resolution];
 
@@ -310,7 +310,7 @@ static CCTextureCache *sharedTextureCache;
 		else {
             
 			UIImage *image = [[UIImage alloc] initWithContentsOfFile:fullpath];
-            CGImageRef *cgImage = [MultiColorizer cgImageForImage:image result:result context:_cicontext];
+            CGImageRef *cgImage = [MultiColorizerMechanism cgImageForImage:image result:result context:_cicontext];
 			tex = [[CCTexture2D alloc] initWithCGImage:cgImage resolutionType:resolution];
             [result release];
 			[image release];

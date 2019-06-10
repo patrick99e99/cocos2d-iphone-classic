@@ -788,8 +788,8 @@
 		A0EFA880169CDFA4006D1B22 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D500B920D5A79C200DBA0E3 /* OpenGLES.framework */; };
 		A0EFA881169CDFA4006D1B22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D500B990D5A79CF00DBA0E3 /* QuartzCore.framework */; };
 		A0EFA882169CDFA4006D1B22 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 503092B210447296005F7AFC /* libz.dylib */; };
-		CD90A0991DC6A4A000A2F438 /* MultiColorizer.h in Headers */ = {isa = PBXBuildFile; fileRef = CD90A0971DC6A4A000A2F438 /* MultiColorizer.h */; };
-		CD90A09A1DC6A4A000A2F438 /* MultiColorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD90A0981DC6A4A000A2F438 /* MultiColorizer.m */; };
+		CD87BA4222ADEC9100EA5F8F /* MultiColorizerMechanism.h in Headers */ = {isa = PBXBuildFile; fileRef = CD87BA4022ADEC9100EA5F8F /* MultiColorizerMechanism.h */; };
+		CD87BA4322ADEC9100EA5F8F /* MultiColorizerMechanism.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87BA4122ADEC9100EA5F8F /* MultiColorizerMechanism.m */; };
 		E0112F53120CB406006667F8 /* CCTransitionPageTurn.h in Headers */ = {isa = PBXBuildFile; fileRef = E0112F4F120CB406006667F8 /* CCTransitionPageTurn.h */; };
 		E0112F54120CB406006667F8 /* CCTransitionPageTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = E0112F50120CB406006667F8 /* CCTransitionPageTurn.m */; };
 		E01E6D8C121F130E001A484F /* CCLabelBMFont.h in Headers */ = {isa = PBXBuildFile; fileRef = E01E6D8A121F130E001A484F /* CCLabelBMFont.h */; };
@@ -1271,8 +1271,8 @@
 		A0DA0BDD15BCFAD700E80A92 /* ccShader_PositionColorLengthTexture_vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccShader_PositionColorLengthTexture_vert.h; sourceTree = "<group>"; };
 		A0EFA7AC169CDF9C006D1B22 /* libcocos2d_box2d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcocos2d_box2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0EFA886169CDFA4006D1B22 /* libcocos2d_chipmunk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcocos2d_chipmunk.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD90A0971DC6A4A000A2F438 /* MultiColorizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiColorizer.h; sourceTree = "<group>"; };
-		CD90A0981DC6A4A000A2F438 /* MultiColorizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiColorizer.m; sourceTree = "<group>"; };
+		CD87BA4022ADEC9100EA5F8F /* MultiColorizerMechanism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiColorizerMechanism.h; sourceTree = "<group>"; };
+		CD87BA4122ADEC9100EA5F8F /* MultiColorizerMechanism.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiColorizerMechanism.m; sourceTree = "<group>"; };
 		E0112F4F120CB406006667F8 /* CCTransitionPageTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTransitionPageTurn.h; sourceTree = "<group>"; };
 		E0112F50120CB406006667F8 /* CCTransitionPageTurn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTransitionPageTurn.m; sourceTree = "<group>"; };
 		E01E6D8A121F130E001A484F /* CCLabelBMFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CCLabelBMFont.h; sourceTree = "<group>"; };
@@ -1574,8 +1574,8 @@
 		501CCFB70E99659400B86F68 /* ImageSupport */ = {
 			isa = PBXGroup;
 			children = (
-				CD90A0971DC6A4A000A2F438 /* MultiColorizer.h */,
-				CD90A0981DC6A4A000A2F438 /* MultiColorizer.m */,
+				CD87BA4022ADEC9100EA5F8F /* MultiColorizerMechanism.h */,
+				CD87BA4122ADEC9100EA5F8F /* MultiColorizerMechanism.m */,
 				501CCFAB0E99657C00B86F68 /* TGAlib.m */,
 				501CCFAC0E99657C00B86F68 /* TGAlib.h */,
 			);
@@ -2156,7 +2156,6 @@
 				5018F2750DFDEAFF00C013A5 /* CCLayer.h in Headers */,
 				5018F2770DFDEAFF00C013A5 /* CCScene.h in Headers */,
 				5018F27D0DFDEAFF00C013A5 /* CCTextureCache.h in Headers */,
-				CD90A0991DC6A4A000A2F438 /* MultiColorizer.h in Headers */,
 				506C78A70E016A7300B48100 /* CCMenu.h in Headers */,
 				506C78EC0E0178FD00B48100 /* CCMenuItem.h in Headers */,
 				509E665E0E06CD940050992C /* CCCamera.h in Headers */,
@@ -2197,6 +2196,7 @@
 				50E2A25210A46CC600D894CE /* CCProtocols.h in Headers */,
 				502C8BE010A661E200D137BA /* CCSpriteFrameCache.h in Headers */,
 				50E1357510ADEB1B00C9E7FA /* CCTexture2D.h in Headers */,
+				CD87BA4222ADEC9100EA5F8F /* MultiColorizerMechanism.h in Headers */,
 				50D2AC9510E90DFA0068ECEB /* CCTMXLayer.h in Headers */,
 				50D2AC9710E90DFA0068ECEB /* CCTMXObjectGroup.h in Headers */,
 				0529445D11098D6F00E500F3 /* CCProfiling.h in Headers */,
@@ -2885,7 +2885,6 @@
 				5018F2780DFDEAFF00C013A5 /* CCScene.m in Sources */,
 				5018F27E0DFDEAFF00C013A5 /* CCTextureCache.m in Sources */,
 				506C78A80E016A7300B48100 /* CCMenu.m in Sources */,
-				CD90A09A1DC6A4A000A2F438 /* MultiColorizer.m in Sources */,
 				506C78ED0E0178FD00B48100 /* CCMenuItem.m in Sources */,
 				509E665F0E06CD940050992C /* CCCamera.m in Sources */,
 				509E66F10E06E1360050992C /* CCActionCamera.m in Sources */,
@@ -2946,6 +2945,7 @@
 				A0C20AC9144FDAF700D84B47 /* CCParticleBatchNode.m in Sources */,
 				A0C3815214BA0548001655CC /* CCTransitionProgress.m in Sources */,
 				A046E29414C1DB7D0005BBF2 /* CCDirectorMac.m in Sources */,
+				CD87BA4322ADEC9100EA5F8F /* MultiColorizerMechanism.m in Sources */,
 				A046E29614C1DB7D0005BBF2 /* CCEventDispatcher.m in Sources */,
 				A046E29814C1DB7D0005BBF2 /* CCGLView.m in Sources */,
 				A046E29A14C1DB7E0005BBF2 /* CCWindow.m in Sources */,
