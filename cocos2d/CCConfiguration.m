@@ -143,8 +143,6 @@ static char * glExtensions;
 		
 		if( CC_CONTENT_SCALE_FACTOR() == 2 ) {
 			ret = isiPhone5 ? kCCDeviceiPhone5RetinaDisplay : kCCDeviceiPhoneRetinaDisplay;
-        } else if ( CC_CONTENT_SCALE_FACTOR() == 3 ) {
-            ret = kCCDeviceiPhoneRetinaHDDisplay;
 		} else
 			ret = isiPhone5 ? kCCDeviceiPhone5 : kCCDeviceiPhone;
 	}
